@@ -13,6 +13,9 @@ from dotenv import load_dotenv
 from retriever import guest_info_tool
 from tools import weather_info_tool, hub_stats_tool
 import gradio_ui_langgraph
+from dotenv import load_dotenv
+from retriever import guest_info_tool
+from tools import weather_info_tool, hub_stats_tool
 
 # logging.basicConfig(level=logging.DEBUG)
 load_dotenv()
@@ -63,6 +66,7 @@ alfred = builder.compile()
 image_data = alfred.get_graph(xray=True).draw_mermaid_png()
 with open("gala_agent_thought_process.png", "wb") as f:
     f.write(image_data)
+
 
 """
 messages = [HumanMessage(content="Marie")]  # Tell me about our guest named 'Lady Ada Lovelace'.
