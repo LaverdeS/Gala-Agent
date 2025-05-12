@@ -8,11 +8,13 @@ from langgraph.prebuilt import ToolNode
 from langgraph.graph import START, StateGraph
 from langgraph.prebuilt import tools_condition
 from langchain_huggingface import HuggingFaceEndpoint, ChatHuggingFace
+from smolagents import gradio_ui
 from dotenv import load_dotenv
 from retriever import guest_info_tool
 from tools import weather_info_tool, hub_stats_tool
+import gradio_ui_langgraph
 
-logging.basicConfig(level=logging.DEBUG)
+# logging.basicConfig(level=logging.DEBUG)
 load_dotenv()
 
 # Generate the chat interface, and append the tools
@@ -62,6 +64,7 @@ image_data = alfred.get_graph(xray=True).draw_mermaid_png()
 with open("gala_agent_thought_process.png", "wb") as f:
     f.write(image_data)
 
+"""
 messages = [HumanMessage(content="Marie")]  # Tell me about our guest named 'Lady Ada Lovelace'.
 response = alfred.invoke({"messages": messages})
 
@@ -73,3 +76,9 @@ final_answer = response['messages'][-1].content
 
 print("🎩 Alfred's Response:")
 print(final_answer)
+"""
+
+
+if __name__ == "__main__":
+    # gradio_ui.GradioUI(alfred).launch()
+    gradio_ui_langgraph.GradioUI(alfred).launch()
